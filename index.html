@@ -9,24 +9,38 @@
     :root {
       --bg: #f4efe5;
       --surface: rgba(255, 251, 245, 0.88);
+      --surface-strong: #fffaf2;
       --ink: #16202a;
       --muted: #5e6b76;
       --line: rgba(22, 32, 42, 0.12);
       --accent: #0f766e;
       --accent-strong: #0b5c56;
+      --warm: #f29f67;
       --shadow: 0 24px 60px rgba(39, 37, 31, 0.12);
       --radius-xl: 28px;
       --radius-lg: 18px;
+      --radius-md: 14px;
       --max: 1120px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
-      font-family: "Segoe UI", sans-serif;
+      font-family: "Segoe UI", "Aptos", "Trebuchet MS", sans-serif;
       color: var(--ink);
-      background: #fbf7ef;
+      background:
+        radial-gradient(circle at top left, rgba(242, 159, 103, 0.32), transparent 32%),
+        radial-gradient(circle at right 20%, rgba(15, 118, 110, 0.18), transparent 28%),
+        linear-gradient(180deg, #fbf7ef 0%, #f4efe5 100%);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     .page {
@@ -38,109 +52,445 @@
     .hero {
       margin-top: 22px;
       padding: 34px;
+      border: 1px solid var(--line);
       border-radius: var(--radius-xl);
-      background: white;
+      background: linear-gradient(135deg, rgba(255, 250, 242, 0.92), rgba(255, 255, 255, 0.74));
       box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -80px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(242, 159, 103, 0.4), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.1);
+      color: var(--accent-strong);
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     h1 {
       margin: 0;
-      font-size: 3rem;
+      max-width: 760px;
+      font-size: clamp(2.5rem, 6vw, 4.8rem);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
     }
 
     .lead {
-      margin-top: 16px;
+      margin: 20px 0 0;
+      max-width: 700px;
+      font-size: 1.12rem;
+      line-height: 1.7;
       color: var(--muted);
     }
 
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
     .button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 14px 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+      padding: 14px 18px;
       border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button.primary {
       background: var(--accent);
-      color: white;
-      font-weight: bold;
+      color: #fff;
+      box-shadow: 0 16px 28px rgba(15, 118, 110, 0.18);
+    }
+
+    .button.primary:hover {
+      background: var(--accent-strong);
+    }
+
+    .button.secondary {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--ink);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid var(--line);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.35rem;
+      margin-bottom: 6px;
     }
 
     .section {
-      margin-top: 40px;
+      margin-top: 28px;
+    }
+
+    .latest-release {
+      display: grid;
+      grid-template-columns: 1.2fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 22px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(255, 252, 247, 0.95), rgba(250, 244, 235, 0.9));
+      box-shadow: var(--shadow);
+    }
+
+    .latest-release h2 {
+      margin: 0 0 8px;
+      font-size: 1.45rem;
+      letter-spacing: -0.03em;
+    }
+
+    .latest-release p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .release-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .release-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.1);
+      color: var(--accent-strong);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 1.55rem;
+      letter-spacing: -0.03em;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.6;
     }
 
     .downloads {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
     }
 
     .card {
-      padding: 20px;
-      background: white;
+      padding: 22px;
       border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: var(--surface);
       box-shadow: var(--shadow);
     }
 
-    .download-link {
+    .card-tag {
       display: inline-block;
-      margin-top: 10px;
-      color: var(--accent-strong);
-      font-weight: bold;
+      margin-bottom: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(242, 159, 103, 0.16);
+      color: #8a4f1f;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    @media (max-width: 800px) {
-      .downloads {
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+    }
+
+    .card p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .download-link {
+      display: inline-flex;
+      align-items: center;
+      font-weight: 700;
+      color: var(--accent-strong);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid var(--line);
+    }
+
+    .feature h3 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .github-box {
+      margin-top: 28px;
+      padding: 24px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(252, 246, 238, 0.9));
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .github-box h2 {
+      margin: 0 0 10px;
+      font-size: 1.65rem;
+      letter-spacing: -0.03em;
+    }
+
+    .github-box p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .github-cta {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .footer {
+      padding: 28px 4px 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 920px) {
+      .downloads,
+      .feature-grid,
+      .stats,
+      .github-box,
+      .latest-release {
         grid-template-columns: 1fr;
+      }
+
+      .github-cta {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding: 16px;
+      }
+
+      .hero {
+        padding: 24px;
+      }
+
+      h1 {
+        font-size: 2.6rem;
+      }
+
+      .button {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
   <main class="page">
-
     <section class="hero">
-      <h1>Ofitools Camps</h1>
+      <span class="eyebrow">Fast, simple, practical</span>
+      <h1>Office tools that stay out of your way.</h1>
       <p class="lead">
-        Simple offline tools to merge, compress, and edit PDF files, plus compare Excel spreadsheets.
+        Ofitools Camps helps you merge, edit, compress, and compare files without clutter,
+        complexity, or unnecessary setup. Built for real office work. Designed to feel easy.
       </p>
 
-      <a class="button" href="#downloads">Download now</a>
-    </section>
+      <div class="hero-actions">
+        <a class="button primary" href="#downloads">Download now</a>
+        <a class="button secondary" href="https://github.com/gerard123456789/CampsPDF" target="_blank" rel="noreferrer">View the project</a>
+      </div>
 
-    <section class="section" id="downloads">
-      <h2>Downloads</h2>
-
-      <div class="downloads">
-
-        <div class="card">
-          <h3>Windows</h3>
-          <p>Full desktop experience for PDF and Excel tools.</p>
-          <a class="download-link"
-             href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest">
-             Download for Windows
-          </a>
+      <div class="stats">
+        <div class="stat">
+          <strong>PDF tools</strong>
+          Merge, reorder, rotate, compress, and clean up files fast.
         </div>
-
-        <div class="card">
-          <h3>Android</h3>
-          <p>Install APK and use tools on mobile.</p>
-          <a class="download-link"
-             href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest">
-             Download APK
-          </a>
+        <div class="stat">
+          <strong>Spreadsheet compare</strong>
+          Spot Excel differences with highlighted result sheets.
         </div>
-
-        <div class="card">
-          <h3>Mac</h3>
-          <p>Mac version using Catalyst build.</p>
-          <a class="download-link"
-             href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest">
-             Download for Mac
-          </a>
+        <div class="stat">
+          <strong>Windows, Android, Mac</strong>
+          One simple toolset, available across your main devices.
         </div>
-
       </div>
     </section>
 
+    <section class="section">
+      <div class="latest-release">
+        <div>
+          <div class="release-meta">
+            <span class="release-badge">Latest version</span>
+            <strong>v1.0.0</strong>
+          </div>
+          <h2>Download the current public release</h2>
+          <p>
+            Get the latest public build from GitHub Releases. You can also open the release page to see notes,
+            asset updates, and future versions as they are published.
+          </p>
+        </div>
+        <div>
+          <a class="button primary" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest" target="_blank" rel="noreferrer">View latest release</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="downloads">
+      <div class="section-header">
+        <h2>Downloads</h2>
+        <p>
+          Direct download links point to the latest public assets hosted in GitHub Releases.
+        </p>
+      </div>
+
+      <div class="downloads">
+        <article class="card">
+          <span class="card-tag">Desktop</span>
+          <h3>Windows</h3>
+          <p>Best choice for full PDF and spreadsheet workflows on desktop.</p>
+          <a class="download-link" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest/download/OfitoolsCamps-win-x64.zip" aria-label="Download Ofitools Camps for Windows">Download for Windows</a>
+        </article>
+
+        <article class="card">
+          <span class="card-tag">Mobile</span>
+          <h3>Android</h3>
+          <p>Take the core file tools with you and install the APK directly. Update the file name below if the release APK uses a different final name.</p>
+          <a class="download-link" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest/download/OfitoolsCamps.apk" aria-label="Download Ofitools Camps for Android">Download APK</a>
+        </article>
+
+        <article class="card">
+          <span class="card-tag">Apple</span>
+          <h3>Mac</h3>
+          <p>Mac Catalyst build for users who want the same lightweight workflow on macOS.</p>
+          <a class="download-link" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest/download/OfitoolsCamps-maccatalyst.zip" aria-label="Download Ofitools Camps for Mac">Download for Mac</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>What it does well</h2>
+        <p>
+          Focused tools, clear actions, and zero noise. The goal is not to impress with complexity, but to solve common office tasks quickly.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature">
+          <h3>PDF editing without friction</h3>
+          <p>Reorder pages, remove what you do not need, rotate pages, and export a cleaner final document.</p>
+        </article>
+
+        <article class="feature">
+          <h3>Real-world compression</h3>
+          <p>Reduce PDF size with practical workflows aimed at actual file sharing and everyday office use.</p>
+        </article>
+
+        <article class="feature">
+          <h3>Spreadsheet difference tracking</h3>
+          <p>Compare two Excel files and generate a result with highlighted changes so differences are visible at a glance.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="github-box">
+      <div>
+        <h2>Like the project?</h2>
+        <p>
+          If Ofitools Camps saves you time, please consider starring the GitHub project. It helps the tool reach more people and supports future updates.
+        </p>
+      </div>
+      <div class="github-cta">
+        <a class="button primary" href="https://github.com/gerard123456789/CampsPDF" target="_blank" rel="noreferrer">Give it a star on GitHub</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Ofitools Camps is a simple office toolkit for PDF and spreadsheet tasks.
+    </footer>
   </main>
 </body>
 </html>
