@@ -139,6 +139,35 @@
       color: var(--ink);
     }
 
+    .language-switcher {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .lang-button {
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--ink);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+
+    .lang-button:hover {
+      transform: translateY(-1px);
+    }
+
+    .lang-button.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: transparent;
+    }
+
     .stats {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -306,7 +335,7 @@
       background: linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(252, 246, 238, 0.9));
       box-shadow: var(--shadow);
       display: grid;
-      grid-template-columns: 1.4fr 1fr;
+      grid-template-columns: 1fr;
       gap: 22px;
       align-items: center;
     }
@@ -321,12 +350,6 @@
       margin: 0;
       color: var(--muted);
       line-height: 1.7;
-    }
-
-    .github-cta {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
     }
 
     .footer {
@@ -354,6 +377,11 @@
         padding: 16px;
       }
 
+      .language-switcher {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
       .hero {
         padding: 24px;
       }
@@ -370,31 +398,37 @@
 </head>
 <body>
   <main class="page">
+    <div class="language-switcher" aria-label="Language selector">
+      <button class="lang-button active" type="button" data-lang-button="ca">CAT</button>
+      <button class="lang-button" type="button" data-lang-button="es">ES</button>
+      <button class="lang-button" type="button" data-lang-button="en">EN</button>
+    </div>
+
     <section class="hero">
-      <span class="eyebrow">Fast, simple, practical</span>
-      <h1>Office tools that stay out of your way.</h1>
-      <p class="lead">
+      <span class="eyebrow" data-i18n="eyebrow">Fast, simple, practical</span>
+      <h1 data-i18n="heroTitle">Office tools that stay out of your way.</h1>
+      <p class="lead" data-i18n="heroLead">
         Ofitools Camps helps you merge, edit, compress, and compare files without clutter,
         complexity, or unnecessary setup. Built for real office work. Designed to feel easy.
       </p>
 
       <div class="hero-actions">
-        <a class="button primary" href="#downloads">Download now</a>
-        <a class="button secondary" href="https://github.com/gerard123456789/CampsPDF" target="_blank" rel="noreferrer">View the project</a>
+        <a class="button primary" href="#downloads" data-i18n="heroPrimary">Download now</a>
+        <a class="button secondary" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest" target="_blank" rel="noreferrer" data-i18n="heroSecondary">View latest release</a>
       </div>
 
       <div class="stats">
         <div class="stat">
-          <strong>PDF tools</strong>
-          Merge, reorder, rotate, compress, and clean up files fast.
+          <strong data-i18n="stat1Title">PDF tools</strong>
+          <span data-i18n="stat1Text">Merge, reorder, rotate, compress, and clean up files fast.</span>
         </div>
         <div class="stat">
-          <strong>Spreadsheet compare</strong>
-          Spot Excel differences with highlighted result sheets.
+          <strong data-i18n="stat2Title">Spreadsheet compare</strong>
+          <span data-i18n="stat2Text">Spot Excel differences with highlighted result sheets.</span>
         </div>
         <div class="stat">
-          <strong>Windows, Android, Mac</strong>
-          One simple toolset, available across your main devices.
+          <strong data-i18n="stat3Title">Windows, Android, Mac</strong>
+          <span data-i18n="stat3Text">One simple toolset, available across your main devices.</span>
         </div>
       </div>
     </section>
@@ -403,94 +437,244 @@
       <div class="latest-release">
         <div>
           <div class="release-meta">
-            <span class="release-badge">Latest version</span>
+            <span class="release-badge" data-i18n="latestBadge">Latest version</span>
             <strong>v1.0.0</strong>
           </div>
-          <h2>Download the current public release</h2>
-          <p>
+          <h2 data-i18n="latestTitle">Download the current public release</h2>
+          <p data-i18n="latestText">
             Get the latest public build from GitHub Releases. You can also open the release page to see notes,
             asset updates, and future versions as they are published.
           </p>
         </div>
         <div>
-          <a class="button primary" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest" target="_blank" rel="noreferrer">View latest release</a>
+          <a class="button primary" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest" target="_blank" rel="noreferrer" data-i18n="latestButton">View latest release</a>
         </div>
       </div>
     </section>
 
     <section class="section" id="downloads">
       <div class="section-header">
-        <h2>Downloads</h2>
-        <p>
+        <h2 data-i18n="downloadsTitle">Downloads</h2>
+        <p data-i18n="downloadsText">
           Direct download links point to the latest public assets hosted in GitHub Releases.
         </p>
       </div>
 
       <div class="downloads">
         <article class="card">
-          <span class="card-tag">Desktop</span>
-          <h3>Windows</h3>
-          <p>Best choice for full PDF and spreadsheet workflows on desktop.</p>
-          <a class="download-link" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest/download/OfitoolsCamps-win-x64.zip" aria-label="Download Ofitools Camps for Windows">Download for Windows</a>
+          <span class="card-tag" data-i18n="windowsTag">Desktop</span>
+          <h3 data-i18n="windowsTitle">Windows</h3>
+          <p data-i18n="windowsText">Best choice for full PDF and spreadsheet workflows on desktop.</p>
+          <a class="download-link" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest/download/OfitoolsCamps-win-x64.zip" aria-label="Download Ofitools Camps for Windows" data-i18n="windowsLink">Download for Windows</a>
         </article>
 
         <article class="card">
-          <span class="card-tag">Mobile</span>
-          <h3>Android</h3>
-          <p>Take the core file tools with you and install the APK directly. Update the file name below if the release APK uses a different final name.</p>
-          <a class="download-link" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest/download/OfitoolsCamps.apk" aria-label="Download Ofitools Camps for Android">Download APK</a>
+          <span class="card-tag" data-i18n="androidTag">Mobile</span>
+          <h3 data-i18n="androidTitle">Android</h3>
+          <p data-i18n="androidText">Take the core file tools with you and install the APK directly. Update the file name below if the release APK uses a different final name.</p>
+          <a class="download-link" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest/download/OfitoolsCamps.apk" aria-label="Download Ofitools Camps for Android" data-i18n="androidLink">Download APK</a>
         </article>
 
         <article class="card">
-          <span class="card-tag">Apple</span>
-          <h3>Mac</h3>
-          <p>Mac Catalyst build for users who want the same lightweight workflow on macOS.</p>
-          <a class="download-link" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest/download/OfitoolsCamps-maccatalyst.zip" aria-label="Download Ofitools Camps for Mac">Download for Mac</a>
+          <span class="card-tag" data-i18n="macTag">Apple</span>
+          <h3 data-i18n="macTitle">Mac</h3>
+          <p data-i18n="macText">Mac Catalyst build for users who want the same lightweight workflow on macOS.</p>
+          <a class="download-link" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest/download/OfitoolsCamps-maccatalyst.zip" aria-label="Download Ofitools Camps for Mac" data-i18n="macLink">Download for Mac</a>
         </article>
       </div>
     </section>
 
     <section class="section">
       <div class="section-header">
-        <h2>What it does well</h2>
-        <p>
+        <h2 data-i18n="featuresTitle">What it does well</h2>
+        <p data-i18n="featuresText">
           Focused tools, clear actions, and zero noise. The goal is not to impress with complexity, but to solve common office tasks quickly.
         </p>
       </div>
 
       <div class="feature-grid">
         <article class="feature">
-          <h3>PDF editing without friction</h3>
-          <p>Reorder pages, remove what you do not need, rotate pages, and export a cleaner final document.</p>
+          <h3 data-i18n="feature1Title">PDF editing without friction</h3>
+          <p data-i18n="feature1Text">Reorder pages, remove what you do not need, rotate pages, and export a cleaner final document.</p>
         </article>
 
         <article class="feature">
-          <h3>Real-world compression</h3>
-          <p>Reduce PDF size with practical workflows aimed at actual file sharing and everyday office use.</p>
+          <h3 data-i18n="feature2Title">Real-world compression</h3>
+          <p data-i18n="feature2Text">Reduce PDF size with practical workflows aimed at actual file sharing and everyday office use.</p>
         </article>
 
         <article class="feature">
-          <h3>Spreadsheet difference tracking</h3>
-          <p>Compare two Excel files and generate a result with highlighted changes so differences are visible at a glance.</p>
+          <h3 data-i18n="feature3Title">Spreadsheet difference tracking</h3>
+          <p data-i18n="feature3Text">Compare two Excel files and generate a result with highlighted changes so differences are visible at a glance.</p>
         </article>
       </div>
     </section>
 
     <section class="github-box">
       <div>
-        <h2>Like the project?</h2>
-        <p>
-          If Ofitools Camps saves you time, please consider starring the GitHub project. It helps the tool reach more people and supports future updates.
+        <h2 data-i18n="focusTitle">Simple downloads, no distractions</h2>
+        <p data-i18n="focusText">
+          Choose your platform, download the latest version, and start working. This page is focused on quick access to the app.
         </p>
-      </div>
-      <div class="github-cta">
-        <a class="button primary" href="https://github.com/gerard123456789/CampsPDF" target="_blank" rel="noreferrer">Give it a star on GitHub</a>
       </div>
     </section>
 
-    <footer class="footer">
-      Ofitools Camps is a simple office toolkit for PDF and spreadsheet tasks.
+    <footer class="footer" data-i18n="footerText">
+      Copyright Gerard Camps. Ofitools Camps is a simple office toolkit for PDF and spreadsheet tasks.
     </footer>
   </main>
+  <script>
+    const translations = {
+      ca: {
+        eyebrow: "Rapid, simple, practic",
+        heroTitle: "Eines d'oficina que no et fan perdre el temps.",
+        heroLead: "Ofitools Camps t'ajuda a unir, editar, comprimir i comparar fitxers sense complicacions ni configuracions innecessaries. Fet per a la feina real d'oficina.",
+        heroPrimary: "Descarrega ara",
+        heroSecondary: "Veure ultima versio",
+        stat1Title: "Eines PDF",
+        stat1Text: "Uneix, reordena, gira, comprimeix i neteja fitxers rapidament.",
+        stat2Title: "Comparacio d'Excel",
+        stat2Text: "Detecta diferencies entre fulls amb resultats ressaltats.",
+        stat3Title: "Windows, Android, Mac",
+        stat3Text: "Una eina simple disponible als teus dispositius principals.",
+        latestBadge: "Ultima versio",
+        latestTitle: "Descarrega la versio publica actual",
+        latestText: "Obre la release publica actual a GitHub i accedeix als fitxers mes recents publicats.",
+        latestButton: "Veure ultima release",
+        downloadsTitle: "Descarregues",
+        downloadsText: "Els enllacos apunten directament als fitxers publics mes recents de GitHub Releases.",
+        windowsTag: "Escriptori",
+        windowsTitle: "Windows",
+        windowsText: "La millor opcio per als fluxos complets de PDF i fulls de calcul a escriptori.",
+        windowsLink: "Descarrega per a Windows",
+        androidTag: "Mobil",
+        androidTitle: "Android",
+        androidText: "Emporta't les eines principals i installa directament l'APK. Actualitza el nom si la release publica un APK amb un nom diferent.",
+        androidLink: "Descarrega APK",
+        macTag: "Apple",
+        macTitle: "Mac",
+        macText: "Compilacio Mac Catalyst per a qui vol el mateix flux lleuger a macOS.",
+        macLink: "Descarrega per a Mac",
+        featuresTitle: "Que fa be",
+        featuresText: "Eines enfocades, accions clares i zero soroll. Pensat per resoldre tasques d'oficina comunes de forma rapida.",
+        feature1Title: "Edicio PDF sense friccions",
+        feature1Text: "Reordena pagines, elimina el que no calgui, gira pagines i exporta un document final mes net.",
+        feature2Title: "Compressio util de veritat",
+        feature2Text: "Redueix la mida del PDF amb fluxos practics pensats per compartir arxius cada dia.",
+        feature3Title: "Seguiment de diferencies a Excel",
+        feature3Text: "Compara dos fitxers Excel i genera un resultat amb els canvis ressaltats d'un cop d'ull.",
+        focusTitle: "Descarregues simples, sense distraccions",
+        focusText: "Tria la teva plataforma, descarrega l'ultima versio i posa't a treballar. Aquesta pagina esta enfocada a donar acces rapid a l'app.",
+        footerText: "Copyright Gerard Camps. Ofitools Camps es una eina simple per a tasques de PDF i fulls de calcul."
+      },
+      es: {
+        eyebrow: "Rapido, simple, practico",
+        heroTitle: "Herramientas de oficina que no te hacen perder el tiempo.",
+        heroLead: "Ofitools Camps te ayuda a unir, editar, comprimir y comparar archivos sin complicaciones ni configuraciones innecesarias. Hecho para el trabajo real de oficina.",
+        heroPrimary: "Descargar ahora",
+        heroSecondary: "Ver ultima version",
+        stat1Title: "Herramientas PDF",
+        stat1Text: "Une, reordena, gira, comprime y limpia archivos rapidamente.",
+        stat2Title: "Comparacion de Excel",
+        stat2Text: "Detecta diferencias entre hojas con resultados resaltados.",
+        stat3Title: "Windows, Android, Mac",
+        stat3Text: "Una herramienta simple disponible en tus dispositivos principales.",
+        latestBadge: "Ultima version",
+        latestTitle: "Descarga la version publica actual",
+        latestText: "Abre la release publica actual en GitHub y accede a los archivos mas recientes publicados.",
+        latestButton: "Ver ultima release",
+        downloadsTitle: "Descargas",
+        downloadsText: "Los enlaces apuntan directamente a los archivos publicos mas recientes de GitHub Releases.",
+        windowsTag: "Escritorio",
+        windowsTitle: "Windows",
+        windowsText: "La mejor opcion para flujos completos de PDF y hojas de calculo en escritorio.",
+        windowsLink: "Descargar para Windows",
+        androidTag: "Movil",
+        androidTitle: "Android",
+        androidText: "Llevate las herramientas principales e instala el APK directamente. Actualiza el nombre si la release publica un APK con un nombre diferente.",
+        androidLink: "Descargar APK",
+        macTag: "Apple",
+        macTitle: "Mac",
+        macText: "Compilacion Mac Catalyst para quien quiere el mismo flujo ligero en macOS.",
+        macLink: "Descargar para Mac",
+        featuresTitle: "Que hace bien",
+        featuresText: "Herramientas enfocadas, acciones claras y cero ruido. Pensado para resolver tareas comunes de oficina de forma rapida.",
+        feature1Title: "Edicion PDF sin friccion",
+        feature1Text: "Reordena paginas, elimina lo que no necesitas, gira paginas y exporta un documento final mas limpio.",
+        feature2Title: "Compresion util de verdad",
+        feature2Text: "Reduce el tamano del PDF con flujos practicos pensados para compartir archivos en el dia a dia.",
+        feature3Title: "Seguimiento de diferencias en Excel",
+        feature3Text: "Compara dos archivos Excel y genera un resultado con los cambios resaltados de un vistazo.",
+        focusTitle: "Descargas simples, sin distracciones",
+        focusText: "Elige tu plataforma, descarga la ultima version y ponte a trabajar. Esta pagina esta enfocada en dar acceso rapido a la app.",
+        footerText: "Copyright Gerard Camps. Ofitools Camps es una herramienta simple para tareas de PDF y hojas de calculo."
+      },
+      en: {
+        eyebrow: "Fast, simple, practical",
+        heroTitle: "Office tools that stay out of your way.",
+        heroLead: "Ofitools Camps helps you merge, edit, compress, and compare files without clutter, complexity, or unnecessary setup. Built for real office work.",
+        heroPrimary: "Download now",
+        heroSecondary: "View latest release",
+        stat1Title: "PDF tools",
+        stat1Text: "Merge, reorder, rotate, compress, and clean up files fast.",
+        stat2Title: "Spreadsheet compare",
+        stat2Text: "Spot Excel differences with highlighted result sheets.",
+        stat3Title: "Windows, Android, Mac",
+        stat3Text: "One simple toolset, available across your main devices.",
+        latestBadge: "Latest version",
+        latestTitle: "Download the current public release",
+        latestText: "Open the current public release on GitHub and access the most recent published assets.",
+        latestButton: "View latest release",
+        downloadsTitle: "Downloads",
+        downloadsText: "The links point directly to the latest public assets hosted in GitHub Releases.",
+        windowsTag: "Desktop",
+        windowsTitle: "Windows",
+        windowsText: "Best choice for full PDF and spreadsheet workflows on desktop.",
+        windowsLink: "Download for Windows",
+        androidTag: "Mobile",
+        androidTitle: "Android",
+        androidText: "Take the core file tools with you and install the APK directly. Update the name if the release publishes a different APK filename.",
+        androidLink: "Download APK",
+        macTag: "Apple",
+        macTitle: "Mac",
+        macText: "Mac Catalyst build for users who want the same lightweight workflow on macOS.",
+        macLink: "Download for Mac",
+        featuresTitle: "What it does well",
+        featuresText: "Focused tools, clear actions, and zero noise. Built to solve common office tasks quickly.",
+        feature1Title: "PDF editing without friction",
+        feature1Text: "Reorder pages, remove what you do not need, rotate pages, and export a cleaner final document.",
+        feature2Title: "Real-world compression",
+        feature2Text: "Reduce PDF size with practical workflows aimed at actual file sharing and everyday office use.",
+        feature3Title: "Spreadsheet difference tracking",
+        feature3Text: "Compare two Excel files and generate a result with highlighted changes at a glance.",
+        focusTitle: "Simple downloads, no distractions",
+        focusText: "Choose your platform, download the latest version, and start working. This page is focused on quick access to the app.",
+        footerText: "Copyright Gerard Camps. Ofitools Camps is a simple office toolkit for PDF and spreadsheet tasks."
+      }
+    };
+
+    function setLanguage(lang) {
+      const values = translations[lang];
+      if (!values) return;
+
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        const key = node.getAttribute("data-i18n");
+        if (values[key]) {
+          node.textContent = values[key];
+        }
+      });
+
+      document.querySelectorAll("[data-lang-button]").forEach((button) => {
+        button.classList.toggle("active", button.getAttribute("data-lang-button") === lang);
+      });
+    }
+
+    document.querySelectorAll("[data-lang-button]").forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.getAttribute("data-lang-button")));
+    });
+
+    setLanguage("ca");
+  </script>
 </body>
 </html>
