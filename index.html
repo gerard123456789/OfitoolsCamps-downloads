@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ofitools Camps</title>
+  <meta name="description" content="Simple office tools for PDF and spreadsheets. Download Ofitools Camps for Windows, Android, and Mac.">
+  <style>
+    :root {
+      --bg: #f4efe5;
+      --surface: rgba(255, 251, 245, 0.88);
+      --ink: #16202a;
+      --muted: #5e6b76;
+      --line: rgba(22, 32, 42, 0.12);
+      --accent: #0f766e;
+      --accent-strong: #0b5c56;
+      --shadow: 0 24px 60px rgba(39, 37, 31, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 18px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #fbf7ef;
+    }
+
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero {
+      margin-top: 22px;
+      padding: 34px;
+      border-radius: var(--radius-xl);
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 3rem;
+    }
+
+    .lead {
+      margin-top: 16px;
+      color: var(--muted);
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: white;
+      font-weight: bold;
+    }
+
+    .section {
+      margin-top: 40px;
+    }
+
+    .downloads {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      padding: 20px;
+      background: white;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .download-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--accent-strong);
+      font-weight: bold;
+    }
+
+    @media (max-width: 800px) {
+      .downloads {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <h1>Ofitools Camps</h1>
+      <p class="lead">
+        Simple offline tools to merge, compress, and edit PDF files, plus compare Excel spreadsheets.
+      </p>
+
+      <a class="button" href="#downloads">Download now</a>
+    </section>
+
+    <section class="section" id="downloads">
+      <h2>Downloads</h2>
+
+      <div class="downloads">
+
+        <div class="card">
+          <h3>Windows</h3>
+          <p>Full desktop experience for PDF and Excel tools.</p>
+          <a class="download-link"
+             href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest">
+             Download for Windows
+          </a>
+        </div>
+
+        <div class="card">
+          <h3>Android</h3>
+          <p>Install APK and use tools on mobile.</p>
+          <a class="download-link"
+             href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest">
+             Download APK
+          </a>
+        </div>
+
+        <div class="card">
+          <h3>Mac</h3>
+          <p>Mac version using Catalyst build.</p>
+          <a class="download-link"
+             href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest">
+             Download for Mac
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
