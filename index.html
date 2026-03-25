@@ -369,6 +369,24 @@
       color: var(--accent-strong);
     }
 
+    .star-box {
+      padding: 22px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(252, 246, 238, 0.92));
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .star-box p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
     .mini-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -402,6 +420,7 @@
     @media (max-width: 920px) {
       .hero-grid,
       .downloads,
+      .star-box,
       .mini-grid,
       .latest-release {
         grid-template-columns: 1fr;
@@ -544,6 +563,13 @@
     </section>
 
     <section class="section">
+      <div class="star-box">
+        <p data-i18n="starText">If the app is useful to you, you can support the project by giving it a star on GitHub.</p>
+        <a class="button secondary" href="https://github.com/gerard123456789/CampsPDF" target="_blank" rel="noreferrer" data-i18n="starButton">Give it a star</a>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="section-header">
         <h2 data-i18n="featuresTitle">Made for the files people handle every day</h2>
         <p data-i18n="featuresText">
@@ -606,6 +632,8 @@
         macTitle: "Mac",
         macText: "Descarrega la compilacio per macOS i comença a treballar sense volta.",
         macLink: "Descarrega per a Mac",
+        starText: "Si l'app et va be, pots donar suport al projecte deixant una estrella a GitHub.",
+        starButton: "Dona-li una estrella",
         featuresTitle: "Pensat per als fitxers del dia a dia",
         featuresText: "La idea es simple: menys friccio, resultats clars i millors habits amb documents importants.",
         feature1Title: "Accions PDF netes",
@@ -647,6 +675,8 @@
         macTitle: "Mac",
         macText: "Descarga la compilacion para macOS y empieza a trabajar sin rodeos.",
         macLink: "Descargar para Mac",
+        starText: "Si la app te resulta util, puedes apoyar el proyecto dejando una estrella en GitHub.",
+        starButton: "Dale una estrella",
         featuresTitle: "Pensado para los archivos del dia a dia",
         featuresText: "La idea es simple: menos friccion, resultados claros y mejores habitos con documentos importantes.",
         feature1Title: "Acciones PDF limpias",
@@ -688,6 +718,8 @@
         macTitle: "Mac",
         macText: "Download the macOS build and start working without extra friction.",
         macLink: "Download for Mac",
+        starText: "If the app is useful to you, you can support the project by giving it a star on GitHub.",
+        starButton: "Give it a star",
         featuresTitle: "Made for the files people handle every day",
         featuresText: "The point is simple: less friction, clear results, and safer habits around documents that matter.",
         feature1Title: "Clean PDF actions",
