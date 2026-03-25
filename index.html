@@ -20,7 +20,9 @@
       --radius-xl: 28px;
       --radius-lg: 18px;
       --radius-md: 14px;
-      --max: 1120px;
+      --danger-bg: #fff1eb;
+      --danger-ink: #8c3b14;
+      --max: 1080px;
     }
 
     * {
@@ -29,7 +31,7 @@
 
     body {
       margin: 0;
-      font-family: "Segoe UI", "Aptos", "Trebuchet MS", sans-serif;
+      font-family: "Aptos", "Segoe UI", "Trebuchet MS", sans-serif;
       color: var(--ink);
       background:
         radial-gradient(circle at top left, rgba(242, 159, 103, 0.32), transparent 32%),
@@ -58,6 +60,43 @@
       box-shadow: var(--shadow);
       overflow: hidden;
       position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) 280px;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .logo-mark {
+      width: 74px;
+      height: 74px;
+      border-radius: 22px;
+      box-shadow: 0 18px 34px rgba(19, 35, 32, 0.16);
+      flex: 0 0 auto;
+    }
+
+    .brand-copy strong,
+    .brand-copy span {
+      display: block;
+    }
+
+    .brand-copy strong {
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-copy span {
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
     .hero::after {
@@ -93,10 +132,10 @@
     }
 
     .lead {
-      margin: 20px 0 0;
-      max-width: 700px;
-      font-size: 1.12rem;
-      line-height: 1.7;
+      margin: 18px 0 0;
+      max-width: 640px;
+      font-size: 1.08rem;
+      line-height: 1.65;
       color: var(--muted);
     }
 
@@ -111,7 +150,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 180px;
+      min-width: 190px;
       padding: 14px 18px;
       border-radius: 999px;
       border: 1px solid transparent;
@@ -168,24 +207,46 @@
       border-color: transparent;
     }
 
-    .stats {
+    .hero-side {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 30px;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
     }
 
-    .stat {
+    .hero-panel,
+    .safety-card,
+    .step-card {
       padding: 18px;
       border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.76);
       border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.82);
     }
 
-    .stat strong {
+    .hero-panel strong,
+    .safety-card strong,
+    .step-card strong {
       display: block;
-      font-size: 1.35rem;
       margin-bottom: 6px;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-panel span,
+    .step-card span,
+    .safety-card p {
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .safety-card {
+      background: linear-gradient(180deg, rgba(255, 241, 235, 0.96), rgba(255, 247, 241, 0.92));
+      border-color: rgba(200, 107, 25, 0.24);
+    }
+
+    .safety-card strong {
+      color: var(--danger-ink);
     }
 
     .section {
@@ -194,10 +255,10 @@
 
     .latest-release {
       display: grid;
-      grid-template-columns: 1.2fr auto;
+      grid-template-columns: minmax(0, 1fr) auto;
       gap: 18px;
       align-items: center;
-      padding: 22px;
+      padding: 20px 22px;
       border-radius: var(--radius-xl);
       border: 1px solid var(--line);
       background: linear-gradient(145deg, rgba(255, 252, 247, 0.95), rgba(250, 244, 235, 0.9));
@@ -206,7 +267,7 @@
 
     .latest-release h2 {
       margin: 0 0 8px;
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       letter-spacing: -0.03em;
     }
 
@@ -238,15 +299,11 @@
     }
 
     .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 16px;
       margin-bottom: 16px;
     }
 
     .section-header h2 {
-      margin: 0;
+      margin: 0 0 8px;
       font-size: 1.55rem;
       letter-spacing: -0.03em;
     }
@@ -254,7 +311,7 @@
     .section-header p {
       margin: 0;
       color: var(--muted);
-      max-width: 560px;
+      max-width: 640px;
       line-height: 1.6;
     }
 
@@ -270,6 +327,9 @@
       border: 1px solid var(--line);
       background: var(--surface);
       box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
     .card-tag {
@@ -291,7 +351,7 @@
     }
 
     .card p {
-      margin: 0 0 18px;
+      margin: 0;
       color: var(--muted);
       line-height: 1.65;
     }
@@ -299,57 +359,38 @@
     .download-link {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
+      margin-top: auto;
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(15, 118, 110, 0.1);
       font-weight: 700;
       color: var(--accent-strong);
     }
 
-    .feature-grid {
+    .mini-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
     }
 
-    .feature {
+    .mini-card {
       padding: 22px;
       border-radius: var(--radius-lg);
       background: rgba(255, 255, 255, 0.68);
       border: 1px solid var(--line);
     }
 
-    .feature h3 {
+    .mini-card h3 {
       margin: 0 0 10px;
       font-size: 1.1rem;
     }
 
-    .feature p {
+    .mini-card p {
       margin: 0;
       color: var(--muted);
       line-height: 1.65;
-    }
-
-    .github-box {
-      margin-top: 28px;
-      padding: 24px;
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--line);
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(252, 246, 238, 0.9));
-      box-shadow: var(--shadow);
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 22px;
-      align-items: center;
-    }
-
-    .github-box h2 {
-      margin: 0 0 10px;
-      font-size: 1.65rem;
-      letter-spacing: -0.03em;
-    }
-
-    .github-box p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
     }
 
     .footer {
@@ -359,16 +400,11 @@
     }
 
     @media (max-width: 920px) {
+      .hero-grid,
       .downloads,
-      .feature-grid,
-      .stats,
-      .github-box,
+      .mini-grid,
       .latest-release {
         grid-template-columns: 1fr;
-      }
-
-      .github-cta {
-        justify-content: flex-start;
       }
     }
 
@@ -384,6 +420,10 @@
 
       .hero {
         padding: 24px;
+      }
+
+      .brand {
+        align-items: flex-start;
       }
 
       h1 {
@@ -405,30 +445,50 @@
     </div>
 
     <section class="hero">
-      <span class="eyebrow" data-i18n="eyebrow">Fast, simple, practical</span>
-      <h1 data-i18n="heroTitle">Office tools that stay out of your way.</h1>
-      <p class="lead" data-i18n="heroLead">
-        Ofitools Camps helps you merge, edit, compress, and compare files without clutter,
-        complexity, or unnecessary setup. Built for real office work. Designed to feel easy.
-      </p>
+      <div class="hero-grid">
+        <div>
+          <div class="brand">
+            <svg class="logo-mark" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="512" height="512" rx="116" fill="#132320"/>
+              <path d="M116 145C116 127.327 130.327 113 148 113H287.373C295.86 113 303.999 116.371 309.999 122.372L382.628 195C388.629 201.001 392 209.14 392 217.627V364C392 381.673 377.673 396 360 396H148C130.327 396 116 381.673 116 364V145Z" fill="#F8EFE1"/>
+              <path d="M287 113V185C287 202.673 301.327 217 319 217H392" fill="#E2D2B8"/>
+              <path d="M287 113V185C287 202.673 301.327 217 319 217H392" stroke="#C86B19" stroke-width="20" stroke-linejoin="round"/>
+              <path d="M177 303C177 254.399 214.399 217 263 217H297" stroke="#1E7A68" stroke-width="28" stroke-linecap="round"/>
+              <path d="M334 334C334 382.601 296.601 420 248 420H214" stroke="#1E7A68" stroke-width="28" stroke-linecap="round"/>
+              <path d="M177 345L146 376" stroke="#C86B19" stroke-width="26" stroke-linecap="round"/>
+              <path d="M367 156L336 187" stroke="#C86B19" stroke-width="26" stroke-linecap="round"/>
+            </svg>
+            <div class="brand-copy">
+              <strong>Ofitools Camps</strong>
+              <span data-i18n="brandLine">PDF i comparacio d'Excel en un moment.</span>
+            </div>
+          </div>
 
-      <div class="hero-actions">
-        <a class="button primary" href="#downloads" data-i18n="heroPrimary">Download now</a>
-        <a class="button secondary" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest" target="_blank" rel="noreferrer" data-i18n="heroSecondary">View latest release</a>
-      </div>
+          <span class="eyebrow" data-i18n="eyebrow">Fast, simple, practical</span>
+          <h1 data-i18n="heroTitle">Open, fix, and export your files in minutes.</h1>
+          <p class="lead" data-i18n="heroLead">
+            Download the app, open your documents, and get the job done without complicated setup. Clear tools for PDF work and spreadsheet comparison.
+          </p>
 
-      <div class="stats">
-        <div class="stat">
-          <strong data-i18n="stat1Title">PDF tools</strong>
-          <span data-i18n="stat1Text">Merge, reorder, rotate, compress, and clean up files fast.</span>
+          <div class="hero-actions">
+            <a class="button primary" href="#downloads" data-i18n="heroPrimary">Download now</a>
+            <a class="button secondary" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest" target="_blank" rel="noreferrer" data-i18n="heroSecondary">View latest release</a>
+          </div>
         </div>
-        <div class="stat">
-          <strong data-i18n="stat2Title">Spreadsheet compare</strong>
-          <span data-i18n="stat2Text">Spot Excel differences with highlighted result sheets.</span>
-        </div>
-        <div class="stat">
-          <strong data-i18n="stat3Title">Windows, Android, Mac</strong>
-          <span data-i18n="stat3Text">One simple toolset, available across your main devices.</span>
+
+        <div class="hero-side">
+          <div class="hero-panel">
+            <strong data-i18n="quickTitle">Easy to start</strong>
+            <span data-i18n="quickText">Choose your platform, download, install, and start working right away.</span>
+          </div>
+          <div class="safety-card">
+            <strong data-i18n="safetyTitle">Protect your sensitive PDFs</strong>
+            <p data-i18n="safetyText">Do not upload or share sensitive documents without knowing exactly where they are going. Work locally when privacy matters.</p>
+          </div>
+          <div class="step-card">
+            <strong data-i18n="stepTitle">3 simple steps</strong>
+            <span data-i18n="stepText">Download. Open your file. Export the result.</span>
+          </div>
         </div>
       </div>
     </section>
@@ -440,10 +500,9 @@
             <span class="release-badge" data-i18n="latestBadge">Latest version</span>
             <strong>v1.0.0</strong>
           </div>
-          <h2 data-i18n="latestTitle">Download the current public release</h2>
+          <h2 data-i18n="latestTitle">One page, one click, one download</h2>
           <p data-i18n="latestText">
-            Get the latest public build from GitHub Releases. You can also open the release page to see notes,
-            asset updates, and future versions as they are published.
+            Go straight to the current public release if you want to see the assets and version notes on GitHub.
           </p>
         </div>
         <div>
@@ -456,7 +515,7 @@
       <div class="section-header">
         <h2 data-i18n="downloadsTitle">Downloads</h2>
         <p data-i18n="downloadsText">
-          Direct download links point to the latest public assets hosted in GitHub Releases.
+          Pick your device and download the app directly.
         </p>
       </div>
 
@@ -472,50 +531,41 @@
           <span class="card-tag" data-i18n="androidTag">Mobile</span>
           <h3 data-i18n="androidTitle">Android</h3>
           <p data-i18n="androidText">Take the core file tools with you and install the APK directly.</p>
-          <a class="download-link" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/download/v.1.0.0/com.camps.campspdf-Signed.apk" aria-label="Download Ofitools Camps for Android" data-i18n="androidLink">Download APK</a>
+          <a class="download-link" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest/download/com.camps.campspdf-Signed.apk" aria-label="Download Ofitools Camps for Android" data-i18n="androidLink">Download APK</a>
         </article>
 
         <article class="card">
           <span class="card-tag" data-i18n="macTag">Apple</span>
           <h3 data-i18n="macTitle">Mac</h3>
           <p data-i18n="macText">Mac Catalyst build for users who want the same lightweight workflow on macOS.</p>
-          <a class="download-link" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/download/v.1.0.0/ofitools-maccatalyst.zip" aria-label="Download Ofitools Camps for Mac" data-i18n="macLink">Download for Mac</a>
+          <a class="download-link" href="https://github.com/gerard123456789/OfitoolsCamps-downloads/releases/latest/download/ofitools-maccatalyst.zip" aria-label="Download Ofitools Camps for Mac" data-i18n="macLink">Download for Mac</a>
         </article>
       </div>
     </section>
 
     <section class="section">
       <div class="section-header">
-        <h2 data-i18n="featuresTitle">What it does well</h2>
+        <h2 data-i18n="featuresTitle">Made for the files people handle every day</h2>
         <p data-i18n="featuresText">
-          Focused tools, clear actions, and zero noise. The goal is not to impress with complexity, but to solve common office tasks quickly.
+          The point is simple: less friction, clear results, and safer habits around documents that matter.
         </p>
       </div>
 
-      <div class="feature-grid">
-        <article class="feature">
-          <h3 data-i18n="feature1Title">PDF editing without friction</h3>
-          <p data-i18n="feature1Text">Reorder pages, remove what you do not need, rotate pages, and export a cleaner final document.</p>
+      <div class="mini-grid">
+        <article class="mini-card">
+          <h3 data-i18n="feature1Title">Clean PDF actions</h3>
+          <p data-i18n="feature1Text">Merge, reorder, rotate, and compress without getting lost in menus.</p>
         </article>
 
-        <article class="feature">
-          <h3 data-i18n="feature2Title">Real-world compression</h3>
-          <p data-i18n="feature2Text">Reduce PDF size with practical workflows aimed at actual file sharing and everyday office use.</p>
+        <article class="mini-card">
+          <h3 data-i18n="feature2Title">Useful comparisons</h3>
+          <p data-i18n="feature2Text">Spot spreadsheet changes quickly with highlighted output you can review fast.</p>
         </article>
 
-        <article class="feature">
-          <h3 data-i18n="feature3Title">Spreadsheet difference tracking</h3>
-          <p data-i18n="feature3Text">Compare two Excel files and generate a result with highlighted changes so differences are visible at a glance.</p>
+        <article class="mini-card">
+          <h3 data-i18n="feature3Title">Safer workflow</h3>
+          <p data-i18n="feature3Text">Think twice before sending sensitive documents anywhere. Keep control of where your files go.</p>
         </article>
-      </div>
-    </section>
-
-    <section class="github-box">
-      <div>
-        <h2 data-i18n="focusTitle">Simple downloads, no distractions</h2>
-        <p data-i18n="focusText">
-          Choose your platform, download the latest version, and start working. This page is focused on quick access to the app.
-        </p>
       </div>
     </section>
 
@@ -527,128 +577,125 @@
     const translations = {
       ca: {
         eyebrow: "Rapid, simple, practic",
-        heroTitle: "Eines d'oficina que no et fan perdre el temps.",
-        heroLead: "Ofitools Camps t'ajuda a unir, editar, comprimir i comparar fitxers sense complicacions ni configuracions innecessaries. Fet per a la feina real d'oficina.",
+        brandLine: "PDF i comparacio d'Excel en un moment.",
+        heroTitle: "Obre, arregla i exporta els teus fitxers en minuts.",
+        heroLead: "Descarrega l'app, obre els documents i acaba la feina sense configuracions complicades. Eines clares per treballar PDFs i comparar fulls de calcul.",
         heroPrimary: "Descarrega ara",
         heroSecondary: "Veure ultima versio",
-        stat1Title: "Eines PDF",
-        stat1Text: "Uneix, reordena, gira, comprimeix i neteja fitxers rapidament.",
-        stat2Title: "Comparacio d'Excel",
-        stat2Text: "Detecta diferencies entre fulls amb resultats ressaltats.",
-        stat3Title: "Windows, Android, Mac",
-        stat3Text: "Una eina simple disponible als teus dispositius principals.",
+        quickTitle: "Facil de començar",
+        quickText: "Tria plataforma, descarrega, installa i posa't a treballar de seguida.",
+        safetyTitle: "Protegeix els teus PDFs sensibles",
+        safetyText: "No pugis ni comparteixis documents sensibles sense saber exactament on aniran. Treballa en local quan la privacitat importi.",
+        stepTitle: "3 passos simples",
+        stepText: "Descarrega. Obre el fitxer. Exporta el resultat.",
         latestBadge: "Ultima versio",
-        latestTitle: "Descarrega la versio publica actual",
-        latestText: "Obre la release publica actual a GitHub i accedeix als fitxers mes recents publicats.",
+        latestTitle: "Una pagina, un clic, una descarrega",
+        latestText: "Ves directament a la release publica actual si vols veure els fitxers i les notes de versio a GitHub.",
         latestButton: "Veure ultima release",
         downloadsTitle: "Descarregues",
-        downloadsText: "Els enllacos apunten directament als fitxers publics mes recents de GitHub Releases.",
+        downloadsText: "Tria el teu dispositiu i descarrega l'app directament.",
         windowsTag: "Escriptori",
         windowsTitle: "Windows",
-        windowsText: "La millor opcio per als fluxos complets de PDF i fulls de calcul a escriptori.",
+        windowsText: "La forma mes facil per installar l'app completa amb setup.",
         windowsLink: "Descarrega per a Windows",
         androidTag: "Mobil",
         androidTitle: "Android",
-        androidText: "Emporta't les eines principals i installa directament l'APK.",
+        androidText: "Installa l'APK i emporta't les eines principals al mobil.",
         androidLink: "Descarrega APK",
         macTag: "Apple",
         macTitle: "Mac",
-        macText: "Compilacio Mac Catalyst per a qui vol el mateix flux lleuger a macOS.",
+        macText: "Descarrega la compilacio per macOS i comença a treballar sense volta.",
         macLink: "Descarrega per a Mac",
-        featuresTitle: "Que fa be",
-        featuresText: "Eines enfocades, accions clares i zero soroll. Pensat per resoldre tasques d'oficina comunes de forma rapida.",
-        feature1Title: "Edicio PDF sense friccions",
-        feature1Text: "Reordena pagines, elimina el que no calgui, gira pagines i exporta un document final mes net.",
-        feature2Title: "Compressio util de veritat",
-        feature2Text: "Redueix la mida del PDF amb fluxos practics pensats per compartir arxius cada dia.",
-        feature3Title: "Seguiment de diferencies a Excel",
-        feature3Text: "Compara dos fitxers Excel i genera un resultat amb els canvis ressaltats d'un cop d'ull.",
-        focusTitle: "Descarregues simples, sense distraccions",
-        focusText: "Tria la teva plataforma, descarrega l'ultima versio i posa't a treballar. Aquesta pagina esta enfocada a donar acces rapid a l'app.",
+        featuresTitle: "Pensat per als fitxers del dia a dia",
+        featuresText: "La idea es simple: menys friccio, resultats clars i millors habits amb documents importants.",
+        feature1Title: "Accions PDF netes",
+        feature1Text: "Uneix, reordena, gira i comprimeix sense perdre't en menus.",
+        feature2Title: "Comparacions utils",
+        feature2Text: "Detecta canvis en fulls de calcul amb una sortida ressaltada i rapida de revisar.",
+        feature3Title: "Flux mes segur",
+        feature3Text: "Pensa-t'ho dues vegades abans d'enviar documents sensibles. Mantingues el control d'on van els fitxers.",
         footerText: "Copyright Gerard Camps. Ofitools Camps es una eina simple per a tasques de PDF i fulls de calcul."
       },
       es: {
         eyebrow: "Rapido, simple, practico",
-        heroTitle: "Herramientas de oficina que no te hacen perder el tiempo.",
-        heroLead: "Ofitools Camps te ayuda a unir, editar, comprimir y comparar archivos sin complicaciones ni configuraciones innecesarias. Hecho para el trabajo real de oficina.",
+        brandLine: "PDF y comparacion de Excel en un momento.",
+        heroTitle: "Abre, arregla y exporta tus archivos en minutos.",
+        heroLead: "Descarga la app, abre tus documentos y termina el trabajo sin configuraciones complicadas. Herramientas claras para PDF y comparacion de hojas de calculo.",
         heroPrimary: "Descargar ahora",
         heroSecondary: "Ver ultima version",
-        stat1Title: "Herramientas PDF",
-        stat1Text: "Une, reordena, gira, comprime y limpia archivos rapidamente.",
-        stat2Title: "Comparacion de Excel",
-        stat2Text: "Detecta diferencias entre hojas con resultados resaltados.",
-        stat3Title: "Windows, Android, Mac",
-        stat3Text: "Una herramienta simple disponible en tus dispositivos principales.",
+        quickTitle: "Facil de empezar",
+        quickText: "Elige plataforma, descarga, instala y ponte a trabajar enseguida.",
+        safetyTitle: "Protege tus PDFs sensibles",
+        safetyText: "No subas ni compartas documentos sensibles sin saber exactamente adonde van. Trabaja en local cuando la privacidad importe.",
+        stepTitle: "3 pasos simples",
+        stepText: "Descarga. Abre el archivo. Exporta el resultado.",
         latestBadge: "Ultima version",
-        latestTitle: "Descarga la version publica actual",
-        latestText: "Abre la release publica actual en GitHub y accede a los archivos mas recientes publicados.",
+        latestTitle: "Una pagina, un clic, una descarga",
+        latestText: "Ve directamente a la release publica actual si quieres ver los archivos y las notas de version en GitHub.",
         latestButton: "Ver ultima release",
         downloadsTitle: "Descargas",
-        downloadsText: "Los enlaces apuntan directamente a los archivos publicos mas recientes de GitHub Releases.",
+        downloadsText: "Elige tu dispositivo y descarga la app directamente.",
         windowsTag: "Escritorio",
         windowsTitle: "Windows",
-        windowsText: "La mejor opcion para flujos completos de PDF y hojas de calculo en escritorio.",
+        windowsText: "La forma mas facil de instalar la app completa con setup.",
         windowsLink: "Descargar para Windows",
         androidTag: "Movil",
         androidTitle: "Android",
-        androidText: "Llevate las herramientas principales e instala el APK directamente.",
+        androidText: "Instala el APK y llevate las herramientas principales al movil.",
         androidLink: "Descargar APK",
         macTag: "Apple",
         macTitle: "Mac",
-        macText: "Compilacion Mac Catalyst para quien quiere el mismo flujo ligero en macOS.",
+        macText: "Descarga la compilacion para macOS y empieza a trabajar sin rodeos.",
         macLink: "Descargar para Mac",
-        featuresTitle: "Que hace bien",
-        featuresText: "Herramientas enfocadas, acciones claras y cero ruido. Pensado para resolver tareas comunes de oficina de forma rapida.",
-        feature1Title: "Edicion PDF sin friccion",
-        feature1Text: "Reordena paginas, elimina lo que no necesitas, gira paginas y exporta un documento final mas limpio.",
-        feature2Title: "Compresion util de verdad",
-        feature2Text: "Reduce el tamano del PDF con flujos practicos pensados para compartir archivos en el dia a dia.",
-        feature3Title: "Seguimiento de diferencias en Excel",
-        feature3Text: "Compara dos archivos Excel y genera un resultado con los cambios resaltados de un vistazo.",
-        focusTitle: "Descargas simples, sin distracciones",
-        focusText: "Elige tu plataforma, descarga la ultima version y ponte a trabajar. Esta pagina esta enfocada en dar acceso rapido a la app.",
+        featuresTitle: "Pensado para los archivos del dia a dia",
+        featuresText: "La idea es simple: menos friccion, resultados claros y mejores habitos con documentos importantes.",
+        feature1Title: "Acciones PDF limpias",
+        feature1Text: "Une, reordena, gira y comprime sin perderte en menus.",
+        feature2Title: "Comparaciones utiles",
+        feature2Text: "Detecta cambios en hojas de calculo con una salida resaltada y rapida de revisar.",
+        feature3Title: "Flujo mas seguro",
+        feature3Text: "Piensatelo dos veces antes de enviar documentos sensibles. Manten el control de adonde van tus archivos.",
         footerText: "Copyright Gerard Camps. Ofitools Camps es una herramienta simple para tareas de PDF y hojas de calculo."
       },
       en: {
         eyebrow: "Fast, simple, practical",
-        heroTitle: "Office tools that stay out of your way.",
-        heroLead: "Ofitools Camps helps you merge, edit, compress, and compare files without clutter, complexity, or unnecessary setup. Built for real office work.",
+        brandLine: "PDF and spreadsheet comparison in minutes.",
+        heroTitle: "Open, fix, and export your files in minutes.",
+        heroLead: "Download the app, open your documents, and get the job done without complicated setup. Clear tools for PDF work and spreadsheet comparison.",
         heroPrimary: "Download now",
         heroSecondary: "View latest release",
-        stat1Title: "PDF tools",
-        stat1Text: "Merge, reorder, rotate, compress, and clean up files fast.",
-        stat2Title: "Spreadsheet compare",
-        stat2Text: "Spot Excel differences with highlighted result sheets.",
-        stat3Title: "Windows, Android, Mac",
-        stat3Text: "One simple toolset, available across your main devices.",
+        quickTitle: "Easy to start",
+        quickText: "Choose your platform, download, install, and start working right away.",
+        safetyTitle: "Protect your sensitive PDFs",
+        safetyText: "Do not upload or share sensitive documents without knowing exactly where they are going. Work locally when privacy matters.",
+        stepTitle: "3 simple steps",
+        stepText: "Download. Open your file. Export the result.",
         latestBadge: "Latest version",
-        latestTitle: "Download the current public release",
-        latestText: "Open the current public release on GitHub and access the most recent published assets.",
+        latestTitle: "One page, one click, one download",
+        latestText: "Go straight to the current public release if you want to see the assets and version notes on GitHub.",
         latestButton: "View latest release",
         downloadsTitle: "Downloads",
-        downloadsText: "The links point directly to the latest public assets hosted in GitHub Releases.",
+        downloadsText: "Pick your device and download the app directly.",
         windowsTag: "Desktop",
         windowsTitle: "Windows",
-        windowsText: "Best choice for full PDF and spreadsheet workflows on desktop.",
+        windowsText: "The easiest way to install the full app with a setup file.",
         windowsLink: "Download for Windows",
         androidTag: "Mobile",
         androidTitle: "Android",
-        androidText: "Take the core file tools with you and install the APK directly.",
+        androidText: "Install the APK and take the core file tools with you.",
         androidLink: "Download APK",
         macTag: "Apple",
         macTitle: "Mac",
-        macText: "Mac Catalyst build for users who want the same lightweight workflow on macOS.",
+        macText: "Download the macOS build and start working without extra friction.",
         macLink: "Download for Mac",
-        featuresTitle: "What it does well",
-        featuresText: "Focused tools, clear actions, and zero noise. Built to solve common office tasks quickly.",
-        feature1Title: "PDF editing without friction",
-        feature1Text: "Reorder pages, remove what you do not need, rotate pages, and export a cleaner final document.",
-        feature2Title: "Real-world compression",
-        feature2Text: "Reduce PDF size with practical workflows aimed at actual file sharing and everyday office use.",
-        feature3Title: "Spreadsheet difference tracking",
-        feature3Text: "Compare two Excel files and generate a result with highlighted changes at a glance.",
-        focusTitle: "Simple downloads, no distractions",
-        focusText: "Choose your platform, download the latest version, and start working. This page is focused on quick access to the app.",
+        featuresTitle: "Made for the files people handle every day",
+        featuresText: "The point is simple: less friction, clear results, and safer habits around documents that matter.",
+        feature1Title: "Clean PDF actions",
+        feature1Text: "Merge, reorder, rotate, and compress without getting lost in menus.",
+        feature2Title: "Useful comparisons",
+        feature2Text: "Spot spreadsheet changes quickly with highlighted output you can review fast.",
+        feature3Title: "Safer workflow",
+        feature3Text: "Think twice before sending sensitive documents anywhere. Keep control of where your files go.",
         footerText: "Copyright Gerard Camps. Ofitools Camps is a simple office toolkit for PDF and spreadsheet tasks."
       }
     };
