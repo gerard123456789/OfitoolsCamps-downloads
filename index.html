@@ -370,21 +370,62 @@
     }
 
     .star-box {
-      padding: 22px;
+      padding: 24px;
       border-radius: var(--radius-xl);
-      border: 1px solid var(--line);
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(252, 246, 238, 0.92));
-      box-shadow: var(--shadow);
+      border: 1px solid rgba(200, 107, 25, 0.22);
+      background: linear-gradient(135deg, rgba(255, 245, 236, 0.98), rgba(255, 250, 244, 0.94));
+      box-shadow: 0 22px 50px rgba(200, 107, 25, 0.14);
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 16px;
       align-items: center;
     }
 
+    .star-box strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: #8a4f1f;
+    }
+
     .star-box p {
       margin: 0;
       color: var(--muted);
       line-height: 1.6;
+    }
+
+    .star-visual {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(22, 32, 42, 0.1);
+      box-shadow: 0 12px 24px rgba(22, 32, 42, 0.08);
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .star-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #fff7d6;
+      border: 1px solid rgba(200, 107, 25, 0.24);
+      color: #8a4f1f;
+      white-space: nowrap;
+    }
+
+    .star-note {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: var(--muted);
     }
 
     .mini-grid {
@@ -564,8 +605,16 @@
 
     <section class="section">
       <div class="star-box">
-        <p data-i18n="starText">If the app is useful to you, you can support the project by giving it a star on GitHub.</p>
-        <a class="button secondary" href="https://github.com/gerard123456789/CampsPDF" target="_blank" rel="noreferrer" data-i18n="starButton">Give it a star</a>
+        <div>
+          <strong data-i18n="starTitle">Support the public project</strong>
+          <p data-i18n="starText">If the app is useful to you, you can support the public downloads project by giving it a star on GitHub.</p>
+          <div class="star-visual" aria-hidden="true">
+            <span class="star-chip">★ Star</span>
+            <span data-i18n="starVisual">When GitHub opens, click the Star button at the top of the page.</span>
+          </div>
+          <span class="star-note" data-i18n="starNote">It takes a moment and helps other people find the app more easily.</span>
+        </div>
+        <a class="button primary" href="https://github.com/gerard123456789/OfitoolsCamps-downloads" target="_blank" rel="noreferrer" data-i18n="starButton">Give it a star</a>
       </div>
     </section>
 
@@ -632,7 +681,10 @@
         macTitle: "Mac",
         macText: "Descarrega la compilacio per macOS i comença a treballar sense volta.",
         macLink: "Descarrega per a Mac",
-        starText: "Si l'app et va be, pots donar suport al projecte deixant una estrella a GitHub.",
+        starTitle: "Dona suport al projecte public",
+        starText: "Si l'app et va be, pots donar suport al projecte public de descarregues deixant una estrella a GitHub.",
+        starVisual: "Quan s'obri GitHub, prem el boto Star de la part superior de la pagina.",
+        starNote: "Es fa en un moment i ajuda que mes gent trobi l'app facilment.",
         starButton: "Dona-li una estrella",
         featuresTitle: "Pensat per als fitxers del dia a dia",
         featuresText: "La idea es simple: menys friccio, resultats clars i millors habits amb documents importants.",
@@ -675,7 +727,10 @@
         macTitle: "Mac",
         macText: "Descarga la compilacion para macOS y empieza a trabajar sin rodeos.",
         macLink: "Descargar para Mac",
-        starText: "Si la app te resulta util, puedes apoyar el proyecto dejando una estrella en GitHub.",
+        starTitle: "Apoya el proyecto publico",
+        starText: "Si la app te resulta util, puedes apoyar el proyecto publico de descargas dejando una estrella en GitHub.",
+        starVisual: "Cuando se abra GitHub, pulsa el boton Star de la parte superior de la pagina.",
+        starNote: "Se hace en un momento y ayuda a que mas gente encuentre la app facilmente.",
         starButton: "Dale una estrella",
         featuresTitle: "Pensado para los archivos del dia a dia",
         featuresText: "La idea es simple: menos friccion, resultados claros y mejores habitos con documentos importantes.",
@@ -718,7 +773,10 @@
         macTitle: "Mac",
         macText: "Download the macOS build and start working without extra friction.",
         macLink: "Download for Mac",
-        starText: "If the app is useful to you, you can support the project by giving it a star on GitHub.",
+        starTitle: "Support the public project",
+        starText: "If the app is useful to you, you can support the public downloads project by giving it a star on GitHub.",
+        starVisual: "When GitHub opens, click the Star button at the top of the page.",
+        starNote: "It takes a moment and helps other people find the app more easily.",
         starButton: "Give it a star",
         featuresTitle: "Made for the files people handle every day",
         featuresText: "The point is simple: less friction, clear results, and safer habits around documents that matter.",
